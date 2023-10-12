@@ -2,6 +2,7 @@ import cv2
 import cv2.aruco as aruco
 import numpy as np
 import pandas as pd
+import csv_gen
 
 targetVideo = 0
 
@@ -32,8 +33,9 @@ while cap.isOpened():
 
             # マーカーIDに応じてテキストを表示
 
+            csv_gen.generate('data/num.csv')
+
             df = pd.read_csv('data/num.csv')
-            # print(df)
 
             if marker_id == 0:
                 text = str(df[df['id'] == 0].iloc[-1]['figure'])
@@ -43,7 +45,6 @@ while cap.isOpened():
                 text = str(df[df['id'] == 2].iloc[-1]['figure'])
             else:
                 text = str(marker_id)
-            #     text = str(marker_id)
 
             # テキストを描画
             cv2.putText(frame, text, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 0), 3)
