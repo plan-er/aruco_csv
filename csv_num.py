@@ -33,14 +33,14 @@ while cap.isOpened():
             # マーカーIDに応じてテキストを表示
 
             df = pd.read_csv('data/num.csv')
-            print(df)
+            # print(df)
 
             if marker_id == 0:
-                text = str(df.iloc[0]['figure'])
-            # if marker_id == 0:
-            #     text = "225"
-            # elif marker_id == 1:
-            #     text = "556"
+                text = str(df[df['id'] == 0].iloc[-1]['figure'])
+            elif marker_id == 1:
+                text = str(df[df['id'] == 1].iloc[-1]['figure'])
+            elif marker_id == 2:
+                text = str(df[df['id'] == 2].iloc[-1]['figure'])
             else:
                 text = str(marker_id)
             #     text = str(marker_id)
